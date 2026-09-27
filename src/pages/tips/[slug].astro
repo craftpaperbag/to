@@ -1,0 +1,70 @@
+---
+import Base from "../../layouts/Base.astro";
+import TipVisual from "../../components/TipVisual.astro";
+import Legend from "../../components/Legend.astro";
+import { getTips, tipUrl, url, type Tip } from "../../lib/tips";
+
+export async function getStaticPaths() {
+  const tips = await getTips();
+  return tips.map((tip, i) => ({
+    params: { slug: tip.slug },
+    props: { tip, prev: tips[i - 1], next: tips[i + 1] },
+  }));
+}
+
+interface Props {
+  tip: Tip;
+  prev?: Tip;
+  next?: Tip;
+}
+const { tip, prev, next } = Astro.props;
+---
+
+<Base title={tip.title} description={tip.claim}>
+  <main class="detail">
+    <div class="back-wrap">
+      <a href={url("/")} class="back">← 一覧へ</a>
+    </div>
+    <article>
+      <div class="detail-meta">
+        <span class="no">{tip.no}</span><span>{tip.category}</span>
+      </div>
+      <h1>{tip.title}</h1>
+      <p class="claim">{tip.claim}</p>
+      <figure class="figure">
+        <TipVisual tip={tip} />
+        <figcaption>
+          <Legend size={8} shareLabel="共有されたもの" />
+        </figcaption>
+      </figure>
+      <section class="why">
+        <h2 class="section-label">なぜ</h2>
+        <p>{tip.why}</p>
+      </section>
+      <section class="apply">
+        <h2 class="section-label">
+          <svg width="20" height="10" viewBox="0 0 20 10" aria-hidden="true">
+            <circle cx="3" cy="5" r="3" fill="#4FA27A"></circle>
+            <path d="M8 5 H18 M14 1.5 L18 5 L14 8.5" stroke="#4FA27A" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+          明日ためしてみる
+        </h2>
+        <p>{tip.apply}</p>
+      </section>
+    </article>
+    <nav class="pager" aria-label="前後のTips">
+      {prev && (
+        <a href={tipUrl(prev.slug)} class="prev">
+          <span class="pager-dir">← 前へ</span>
+          <span class="pager-title">{prev.title}</span>
+        </a>
+      )}
+      {next && (
+        <a href={tipUrl(next.slug)} class="next">
+          <span class="pager-dir">次へ →</span>
+          <span class="pager-title">{next.title}</span>
+        </a>
+      )}
+    </nav>
+  </main>
+</Base>

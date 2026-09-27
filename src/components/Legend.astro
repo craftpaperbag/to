@@ -1,0 +1,12 @@
+---
+interface Props {
+  size?: 8 | 10;
+  shareLabel?: string;
+}
+const { size = 10, shareLabel = "二人のあいだで共有されたもの" } = Astro.props;
+const sw = size === 8 ? "sw sw-8" : "sw";
+---
+
+<span class="legend-item"><span class={`${sw} sw-speak`}></span>話す人</span>
+<span class="legend-item"><span class={`${sw} sw-listen`}></span>受け取る人</span>
+<span class="legend-item"><span class={`${sw} sw-share`}></span>{shareLabel}</span>

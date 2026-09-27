@@ -1,0 +1,18 @@
+---
+import type { Tip } from "../lib/tips";
+
+interface Props {
+  tip: Tip;
+  captions?: boolean;
+}
+
+const { tip, captions = true } = Astro.props;
+const escapeAttr = (s: string) =>
+  s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+const svg = tip.svg.replace(
+  /<svg\b/,
+  `<svg role="img" aria-label="${escapeAttr(tip.visualLabel)}"`,
+);
+---
+
+<div class="tv" data-captions={String(captions)} set:html={svg} />

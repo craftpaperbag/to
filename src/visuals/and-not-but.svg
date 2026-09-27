@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 220">
+  <style>
+    @keyframes t2c1{0%{stroke-dashoffset:1;opacity:1}18%,92%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+    @keyframes t2c2{0%,18%{stroke-dashoffset:1;opacity:1}32%{stroke-dashoffset:0;opacity:1}53%{opacity:1}60%,92%{stroke-dashoffset:0;opacity:.15}100%{stroke-dashoffset:0;opacity:0}}
+    @keyframes t2b{0%,38%{stroke-dashoffset:1;opacity:1}70%,92%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+    @keyframes t2l1{0%{stroke-dashoffset:1;opacity:1}30%,92%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+    @keyframes t2l2{0%,25%{stroke-dashoffset:1;opacity:1}55%,92%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+    @keyframes t2g{0%,58%{stroke-dashoffset:1;opacity:1}80%,92%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+  </style>
+  <line x1="24" y1="113" x2="336" y2="113" stroke="#E2DED5" stroke-width="1"/>
+  <circle cx="24" cy="36" r="7" data-r="sf" fill="#DD6B4D"/>
+  <circle cx="24" cy="70" r="7" data-r="lf" fill="#3F7CB0"/>
+  <path d="M40 36 H180" pathLength="1" data-r="sl" stroke="#DD6B4D" stroke-width="3" stroke-linecap="round" fill="none" style="stroke-dasharray:1;stroke-dashoffset:0;animation:t2c1 6s ease-in-out infinite"/>
+  <path d="M180 36 H330" pathLength="1" data-r="sl" stroke="#DD6B4D" stroke-width="3" stroke-linecap="round" fill="none" style="stroke-dasharray:1;stroke-dashoffset:0;opacity:.15;animation:t2c2 6s ease-in-out infinite"/>
+  <path d="M40 70 H150 L180 22 L210 70 H330" pathLength="1" data-r="ll" stroke="#3F7CB0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" style="stroke-dasharray:1;stroke-dashoffset:0;animation:t2b 6s ease-in-out infinite"/>
+  <circle cx="24" cy="146" r="7" data-r="sf" fill="#DD6B4D"/>
+  <circle cx="24" cy="180" r="7" data-r="lf" fill="#3F7CB0"/>
+  <path d="M40 146 H190 Q214 146 232 163" pathLength="1" data-r="sl" stroke="#DD6B4D" stroke-width="3" stroke-linecap="round" fill="none" style="stroke-dasharray:1;stroke-dashoffset:0;animation:t2l1 6s ease-in-out infinite"/>
+  <path d="M40 180 H190 Q214 180 232 163" pathLength="1" data-r="ll" stroke="#3F7CB0" stroke-width="3" stroke-linecap="round" fill="none" style="stroke-dasharray:1;stroke-dashoffset:0;animation:t2l2 6s ease-in-out infinite"/>
+  <path d="M232 163 H330" pathLength="1" data-r="shl" stroke="#4FA27A" stroke-width="6" stroke-linecap="round" fill="none" style="stroke-dasharray:1;stroke-dashoffset:0;animation:t2g 6s ease-in-out infinite"/>
+  <g class="tv-cap">
+    <text x="330" y="100" text-anchor="end" font-size="11" fill="#6A6770" font-family="IBM Plex Sans JP, sans-serif">断ち切ってから引く</text>
+    <text x="330" y="208" text-anchor="end" font-size="11" fill="#26262B" font-family="IBM Plex Sans JP, sans-serif">横に並べて伸ばす</text>
+  </g>
+</svg>

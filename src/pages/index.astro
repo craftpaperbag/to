@@ -1,0 +1,94 @@
+---
+import Base from "../layouts/Base.astro";
+import TipVisual from "../components/TipVisual.astro";
+import Legend from "../components/Legend.astro";
+import RandomButton from "../components/RandomButton.astro";
+import categories from "../data/categories.json";
+import { getTips, tipUrl } from "../lib/tips";
+
+const tips = await getTips();
+const cats = ["すべて", ...categories];
+---
+
+<Base>
+  <main class="top">
+    <section class="hero">
+      <h1>
+        <span class="hero-name">to</span>
+        <span class="hero-sub">言いあえる関係について</span>
+      </h1>
+      <p class="hero-lead">言いにくいことも、お互いに言える関係をつくるためのコツを、一枚ずつ図にして集めています。</p>
+      <div class="hero-actions">
+        <RandomButton />
+        <span class="count">いま {tips.length} 枚</span>
+      </div>
+    </section>
+
+    <section class="legend" aria-label="図の色の意味">
+      <Legend />
+    </section>
+
+    <nav class="chips" aria-label="カテゴリ">
+      {cats.map((c, i) => (
+        <button type="button" class="chip" data-cat={c} aria-pressed={i === 0 ? "true" : "false"}>
+          {c}
+        </button>
+      ))}
+    </nav>
+
+    <div class="cards">
+      {tips.map((t) => (
+        <a href={tipUrl(t.slug)} class="card" data-cat={t.category}>
+          <div class="card-visual">
+            <div class="card-visual-box">
+              <TipVisual tip={t} captions={false} />
+            </div>
+          </div>
+          <div class="card-body">
+            <span class="card-meta"><span class="no">{t.no}</span><span>{t.category}</span></span>
+            <span class="card-title">{t.title}</span>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <div class="empty" hidden>
+      <svg width="72" height="24" viewBox="0 0 72 24" aria-hidden="true">
+        <circle cx="8" cy="12" r="6" fill="#DD6B4D"></circle>
+        <circle cx="64" cy="12" r="6" fill="#3F7CB0"></circle>
+        <path d="M18 12 H54" stroke="#B9B3A7" stroke-width="1.4" stroke-dasharray="2 4"></path>
+      </svg>
+      <p>「<span data-empty-cat></span>」の図は、まだ描いている途中です。</p>
+    </div>
+  </main>
+</Base>
+
+<script>
+  const ALL = "すべて";
+  const chips = [...document.querySelectorAll<HTMLButtonElement>(".chip")];
+  const cards = [...document.querySelectorAll<HTMLAnchorElement>(".card")];
+  const empty = document.querySelector<HTMLElement>(".empty")!;
+  const emptyCat = document.querySelector<HTMLElement>("[data-empty-cat]")!;
+
+  function apply(cat: string, updateUrl: boolean) {
+    if (!chips.some((c) => c.dataset.cat === cat)) cat = ALL;
+    chips.forEach((c) => c.setAttribute("aria-pressed", String(c.dataset.cat === cat)));
+    let shown = 0;
+    cards.forEach((card) => {
+      const hit = cat === ALL || card.dataset.cat === cat;
+      card.hidden = !hit;
+      if (hit) shown++;
+    });
+    empty.hidden = shown > 0;
+    emptyCat.textContent = cat;
+    if (updateUrl) {
+      const u = new URL(location.href);
+      if (cat === ALL) u.searchParams.delete("cat");
+      else u.searchParams.set("cat", cat);
+      history.replaceState(null, "", u);
+    }
+  }
+
+  chips.forEach((c) => c.addEventListener("click", () => apply(c.dataset.cat!, true)));
+  apply(new URLSearchParams(location.search).get("cat") ?? ALL, false);
+</script>

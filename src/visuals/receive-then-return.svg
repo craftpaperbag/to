@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 200">
+  <style>
+    @keyframes t1a{0%{transform:translate(60px,100px);opacity:0}6%{opacity:1}30%{transform:translate(106px,100px);opacity:1}50%{transform:translate(62px,48px);opacity:1}62%,100%{transform:translate(40px,22px);opacity:0}}
+    @keyframes t1b{0%{transform:translate(250px,100px);opacity:0}6%{opacity:1}30%{transform:translate(300px,100px)}40%,90%{transform:translate(320px,100px);opacity:1}100%{transform:translate(320px,100px);opacity:0}}
+    @keyframes t1c{0%,45%{transform:translate(302px,100px);opacity:0}50%{opacity:1}68%{transform:translate(275px,72px)}86%{transform:translate(250px,100px);opacity:1}94%,100%{transform:translate(250px,100px);opacity:0}}
+    @keyframes t1ring{0%,38%{opacity:0;transform:scale(1)}42%{opacity:.7;transform:scale(1)}58%,100%{opacity:0;transform:scale(1.5)}}
+  </style>
+  <line x1="180" y1="30" x2="180" y2="170" stroke="#E2DED5" stroke-width="1"/>
+  <path d="M60 100 H104" data-r="sl" stroke="#DD6B4D" stroke-width="1.5" stroke-dasharray="3 4" opacity=".45" fill="none"/>
+  <path d="M106 100 L52 36" data-r="sl" stroke="#DD6B4D" stroke-width="1.5" stroke-dasharray="3 4" opacity=".45" fill="none"/>
+  <path d="M50 44 L50 33 L60 36" data-r="sl" stroke="#DD6B4D" stroke-width="1.5" opacity=".45" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="40" cy="100" r="18" data-r="sf" fill="#DD6B4D"/>
+  <circle cx="130" cy="100" r="18" data-r="lf" fill="#3F7CB0"/>
+  <circle cx="0" cy="0" r="6" data-r="sf" fill="#DD6B4D" style="transform:translate(62px,48px);animation:t1a 5s cubic-bezier(.45,0,.3,1) infinite"/>
+  <path d="M250 100 H300" data-r="sl" stroke="#DD6B4D" stroke-width="1.5" stroke-dasharray="3 4" opacity=".45" fill="none"/>
+  <path d="M304 90 Q276 58 252 88" data-r="shl" stroke="#4FA27A" stroke-width="1.5" stroke-dasharray="3 4" opacity=".7" fill="none"/>
+  <path d="M250 78 L251 89 L261 86" data-r="shl" stroke="#4FA27A" stroke-width="1.5" opacity=".7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="230" cy="100" r="18" data-r="sf" fill="#DD6B4D"/>
+  <circle cx="320" cy="100" r="18" data-r="lf" fill="#3F7CB0"/>
+  <circle cx="320" cy="100" r="22" fill="none" data-r="ll" stroke="#3F7CB0" stroke-width="1.5" style="opacity:0;transform-box:fill-box;transform-origin:center;animation:t1ring 5s ease-out infinite"/>
+  <circle cx="0" cy="0" r="6" data-r="sf" fill="#DD6B4D" stroke="#fff" stroke-width="1.5" style="transform:translate(320px,100px);animation:t1b 5s cubic-bezier(.45,0,.3,1) infinite"/>
+  <g style="transform:translate(276px,73px);animation:t1c 5s cubic-bezier(.45,0,.3,1) infinite">
+    <circle cx="0" cy="0" r="9" data-r="shf" fill="#4FA27A"/>
+    <text x="0" y="4" text-anchor="middle" font-size="11" font-weight="600" data-r="sht" fill="#fff" font-family="IBM Plex Sans JP, sans-serif">?</text>
+  </g>
+  <g class="tv-cap">
+    <text x="85" y="160" text-anchor="middle" font-size="11" fill="#6A6770" font-family="IBM Plex Sans JP, sans-serif">跳ね返す</text>
+    <text x="275" y="160" text-anchor="middle" font-size="11" fill="#26262B" font-family="IBM Plex Sans JP, sans-serif">受け止めて、問いで返す</text>
+  </g>
+</svg>

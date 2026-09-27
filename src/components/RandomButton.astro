@@ -1,0 +1,29 @@
+---
+import { getTips, tipUrl } from "../lib/tips";
+
+interface Props {
+  /** 詳細ページで表示中のTips。ランダムの候補から除く。 */
+  current?: string;
+}
+const { current } = Astro.props;
+const tips = await getTips();
+const urls = tips.filter((t) => t.slug !== current).map((t) => tipUrl(t.slug));
+---
+
+<button type="button" class="random-btn" data-random={JSON.stringify(urls)}>
+  <svg width="22" height="14" viewBox="0 0 22 14" aria-hidden="true">
+    <circle cx="4" cy="7" r="3" fill="#DD6B4D"></circle>
+    <circle cx="18" cy="7" r="3" fill="#3F7CB0"></circle>
+    <path d="M8 7 H14" stroke="#F7F5F0" stroke-width="1.4" stroke-linecap="round"></path>
+  </svg>
+  ランダムに一枚
+</button>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>("[data-random]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const urls: string[] = JSON.parse(btn.dataset.random || "[]");
+      if (urls.length) location.href = urls[Math.floor(Math.random() * urls.length)];
+    });
+  });
+</script>
